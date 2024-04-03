@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: portfoliodb
+    image: postgres
+    environment:
+      - POSTGRES_USER=tjobit
+      - POSTGRES_PASSWORD=123123
+      - POSTGRES_DB=portfoliodb
+    ports:
+      - 5432:5432
