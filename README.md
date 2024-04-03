@@ -1,6 +1,8 @@
 # Portfolio API
 
-Project installation and setup instructions :
+## Project installation and setup instructions :
+
+Packages installation :
 ```bash
 pnpm install
 ```
@@ -12,6 +14,13 @@ docker-compose up
 npx prisma generate
 
 npx prisma migrate dev --name init
+```
+
+## Project usage instructions :
+
+Start docker/database :
+```bash
+docker-compose up
 ```
 
 On change in prisma.schema : 
