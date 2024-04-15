@@ -19,3 +19,17 @@ model Admin {
   password String
   salt    String
 }
+
+model Project {
+  id       Int   @id @default(autoincrement())
+  name    String   @unique
+  description String
+  nbParticipants Int
+  tags   String[]
+  githubUrl String?
+  websiteUrl String?
+  startDate String
+  endDate String?
+  thumbnailUrl String?
+  picturesUrl String[]
+}

@@ -6,3 +6,6 @@
 
 # pnpm packages
 node_modules/
+
+# prisma
+data/

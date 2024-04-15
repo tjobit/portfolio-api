@@ -64,3 +64,9 @@ export function throwIfNotFunction(...args) {
         throw HttpException.INVALID_PARAMETER;
     }
 }
+
+export function throwIfNotArray(...args) {
+    if (!Array.isArray(args) || isNull(...args)) {
+        throw HttpException.INVALID_PARAMETER;
+    }
+}
