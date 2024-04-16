@@ -35,9 +35,11 @@ export async function getProjects(req, res, next) {
 
 export async function getProjectById(req, res, next) {
     try {
-        const { id } = req.params;
+        let { id } = req.params;
 
-        controllerUtils.throwIfNotString(id);
+        id = parseInt(id);
+
+        controllerUtils.throwIfNotNumber(id);
 
         const project = await projectService.getProjectById(id);
 
@@ -49,11 +51,14 @@ export async function getProjectById(req, res, next) {
 
 export async function updateProject(req, res, next) {
     try {
-        const { id } = req.params;
+        let { id } = req.params;
+
+        id = parseInt(id);
+
         const { name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl } = req.body;
 
-        controllerUtils.throwIfNotString(id, name, description, githubUrl, websiteUrl, thumbnailUrl);
-        controllerUtils.throwIfNotNumber(nbParticipants);
+        controllerUtils.throwIfNotString(name, description, githubUrl, websiteUrl, thumbnailUrl);
+        controllerUtils.throwIfNotNumber(id, nbParticipants);
         controllerUtils.throwIfNotArray(tags, picturesUrl);
 
         await projectService.updateProject(id, name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
@@ -66,9 +71,11 @@ export async function updateProject(req, res, next) {
 
 export async function deleteProject(req, res, next) {
     try {
-        const { id } = req.params;
+        let { id } = req.params;
 
-        controllerUtils.throwIfNotString(id);
+        id = parseInt(id);
+
+        controllerUtils.throwIfNotNumber(id);
 
         await projectService.deleteProject(id);
 
