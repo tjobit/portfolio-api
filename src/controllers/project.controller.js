@@ -3,9 +3,9 @@ import * as projectService from '../services/project.service.js';
 
 export async function createProject(req, res, next) {
     try {
-        const { name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl } = req.body;
+        const { name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl } = req.body;
 
-        controllerUtils.throwIfNotString(name, description, startDate);
+        controllerUtils.throwIfNotString(name, shortDescription, longDescription, startDate);
 
         if(githubUrl) controllerUtils.throwIfNotString(githubUrl);
         if(websiteUrl) controllerUtils.throwIfNotString(websiteUrl);
@@ -15,7 +15,7 @@ export async function createProject(req, res, next) {
         controllerUtils.throwIfNotNumber(nbParticipants);
         controllerUtils.throwIfNotArray(tags, picturesUrl);
 
-        const createdProject = await projectService.createProject(name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
+        const createdProject = await projectService.createProject(name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
 
         res.status(201).json(createdProject);
     } catch (error) {
@@ -55,13 +55,13 @@ export async function updateProject(req, res, next) {
 
         id = parseInt(id);
 
-        const { name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl } = req.body;
+        const { name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl } = req.body;
 
-        controllerUtils.throwIfNotString(name, description, githubUrl, websiteUrl, thumbnailUrl);
+        controllerUtils.throwIfNotString(name, shortDescription, longDescription, githubUrl, websiteUrl, thumbnailUrl);
         controllerUtils.throwIfNotNumber(id, nbParticipants);
         controllerUtils.throwIfNotArray(tags, picturesUrl);
 
-        const result = await projectService.updateProject(id, name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
+        const result = await projectService.updateProject(id, name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
 
         res.status(200).json(result);
     } catch (error) {

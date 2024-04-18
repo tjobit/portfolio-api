@@ -1,7 +1,7 @@
 import client from '../client.js';
 import { HttpException } from '../exceptions/HttpExceptions.js';
 
-export async function createProject(name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl) {
+export async function createProject(name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl) {
     const findProject = await client.project.findUnique({ where: { name } });
     
     if (findProject) {
@@ -11,7 +11,8 @@ export async function createProject(name, description, nbParticipants, tags, git
     const createdProject = await client.project.create({
         data: {
             name,
-            description,
+            shortDescription,
+            longDescription,
             nbParticipants,
             tags,
             githubUrl,
@@ -40,7 +41,7 @@ export async function getProjectById(id) {
     return project ;
 }
 
-export async function updateProject(id, name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl) {
+export async function updateProject(id, name, shortDescription, longDescription, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl) {
     const project = await client.project.findUnique({ where: { id } });
 
     if (!project) {
@@ -51,7 +52,8 @@ export async function updateProject(id, name, description, nbParticipants, tags,
         where: { id },
         data: {
             name,
-            description,
+            shortDescription,
+            longDescription,
             nbParticipants,
             tags,
             githubUrl,

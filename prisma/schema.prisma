@@ -23,13 +23,14 @@ model Admin {
 model Project {
   id       Int   @id @default(autoincrement())
   name    String   @unique
-  description String
+  shortDescription String
+  longDescription String
   nbParticipants Int
   tags   String[]
-  githubUrl String?
-  websiteUrl String?
+  githubUrl String
+  websiteUrl String
   startDate String
-  endDate String?
-  thumbnailUrl String?
+  endDate String
+  thumbnailUrl String
   picturesUrl String[]
 }
