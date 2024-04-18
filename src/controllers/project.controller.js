@@ -61,9 +61,9 @@ export async function updateProject(req, res, next) {
         controllerUtils.throwIfNotNumber(id, nbParticipants);
         controllerUtils.throwIfNotArray(tags, picturesUrl);
 
-        await projectService.updateProject(id, name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
+        const result = await projectService.updateProject(id, name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
 
-        res.status(204).end();
+        res.status(200).json(result);
     } catch (error) {
         next(error);
     }
@@ -77,9 +77,9 @@ export async function deleteProject(req, res, next) {
 
         controllerUtils.throwIfNotNumber(id);
 
-        await projectService.deleteProject(id);
+        const result = await projectService.deleteProject(id);
 
-        res.status(204).end();
+        res.status(200).json(result);
     } catch (error) {
         next(error);
     }

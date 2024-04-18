@@ -8,8 +8,6 @@ export async function createProject(name, description, nbParticipants, tags, git
         throw new HttpException(409, 'This project is already registered');
     }
 
-    console.log('createProject', name, description, nbParticipants, tags, githubUrl, websiteUrl, startDate, endDate, thumbnailUrl, picturesUrl);
-
     const createdProject = await client.project.create({
         data: {
             name,
@@ -49,7 +47,7 @@ export async function updateProject(id, name, description, nbParticipants, tags,
         throw new HttpException(404, 'No project found with this id');
     }
 
-    await client.project.update({
+    const result = await client.project.update({
         where: { id },
         data: {
             name,
@@ -64,6 +62,8 @@ export async function updateProject(id, name, description, nbParticipants, tags,
             picturesUrl
         },
     });
+
+    return result;
 }
 
 export async function deleteProject(id) {
@@ -73,5 +73,7 @@ export async function deleteProject(id) {
         throw new HttpException(404, 'No project found with this id');
     }
 
-    await client.project.delete({ where: { id } });
+    const result = await client.project.delete({ where: { id } });
+
+    return result;
 }
