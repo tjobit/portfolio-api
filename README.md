@@ -21,6 +21,11 @@ npx prisma generate
 npx prisma migrate dev
 ```
 
+Start the server :
+```bash
+pnpm run dev
+```
+
 ## Project usage instructions :
 
 Start docker/database :
