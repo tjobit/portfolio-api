@@ -2,6 +2,7 @@ import express from 'express';
 import * as authRoute from './routes/auth.route.js';
 import * as projectRoute from './routes/project.route.js';
 import * as userRoute from './routes/user.route.js';
+import * as metricRoute from './routes/metric.route.js';
 import cors from 'cors';
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(authRoute.getRouter());
 app.use(projectRoute.getRouter());
 app.use(userRoute.getRouter());
+app.use(metricRoute.getRouter());
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
